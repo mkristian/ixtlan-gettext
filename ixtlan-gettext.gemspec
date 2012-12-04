@@ -4,13 +4,13 @@ Gem::Specification.new do |s|
   s.version = '0.1.0'
 
   s.summary = ''
-  s.description = ''
+  s.description = 'helper to use fast_gettext with datamapper/ixtlan'
   s.homepage = 'https://github.com/mkristian/ixtlan-remote'
 
-  s.authors = ['Kristian Meier']
+  s.authors = ['Christian Meier']
   s.email = ['m.kristian@web.de']
 
-  s.license = "AGPL-3"
+  s.license = "AGPL3"
 
   s.files += Dir['lib/**/*']
   s.files += Dir['spec/**/*'] 
@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest', '3.3.0'
   s.add_development_dependency 'dm-sqlite-adapter', '1.2.0'
   s.add_development_dependency 'dm-migrations', '1.2.0'
+  s.add_development_dependency 'copyright-headers', '~>1.0'
 end
