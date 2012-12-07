@@ -1,8 +1,8 @@
 ixtlan-gettext
 -------------
 
-* [![Build Status](https://secure.travis-ci.org/mkristian/ixtlan-gettext.png)](http://travis-ci.org/mkristian/ixtlan-remote)
-* [![Dependency Status](https://gemnasium.com/mkristian/ixtlan-gettext.png)](https://gemnasium.com/mkristian/ixtlan-remote)
+* [![Build Status](https://secure.travis-ci.org/mkristian/ixtlan-gettext.png)](http://travis-ci.org/mkristian/ixtlan-gettext)
+* [![Dependency Status](https://gemnasium.com/mkristian/ixtlan-gettext.png)](https://gemnasium.com/mkristian/ixtlan-gettext)
 * [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mkristian/ixtlan-gettext)
 
 these are some helper classes to provide translation text via the fast_gettext gem from a database usng datamapper. (it will not work with activerecord !!). beside the locale there is also a text domain which can be used to overlay the default text domain. for example you have a rideshare board for several locations but want to have slightly different text/translation here or there, then you canuse the default text domain for the common text and overwrite some passages in the respective text domain for a location.

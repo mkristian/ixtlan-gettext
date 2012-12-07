@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ixtlan-remote', '~> 0.1'
   s.add_dependency 'fast_gettext', '~> 0.6'
   s.add_development_dependency 'rake', '~> 10.0.2'
-  s.add_development_dependency 'minitest', '3.3.0'
+  s.add_development_dependency 'minitest', '~> 4.3.0'
   s.add_development_dependency 'dm-sqlite-adapter', '1.2.0'
   s.add_development_dependency 'dm-migrations', '1.2.0'
   s.add_development_dependency 'dm-validations', '1.2.0'
