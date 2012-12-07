@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
 
   s.summary = ''
   s.description = 'helper to use fast_gettext with datamapper/ixtlan'
-  s.homepage = 'https://github.com/mkristian/ixtlan-remote'
+  s.homepage = 'https://github.com/mkristian/ixtlan-gettext'
 
   s.authors = ['Christian Meier']
   s.email = ['m.kristian@web.de']
@@ -20,9 +20,12 @@ Gem::Specification.new do |s|
 
   s.test_files += Dir['spec/**/*_spec.rb']
   s.add_dependency 'ixtlan-remote', '~> 0.1'
-  s.add_development_dependency 'rake', '= 0.9.2.2'
+  s.add_dependency 'fast_gettext', '~> 0.6'
+  s.add_development_dependency 'rake', '~> 10.0.2'
   s.add_development_dependency 'minitest', '3.3.0'
   s.add_development_dependency 'dm-sqlite-adapter', '1.2.0'
   s.add_development_dependency 'dm-migrations', '1.2.0'
-  s.add_development_dependency 'copyright-headers', '~>1.0'
+  s.add_development_dependency 'dm-validations', '1.2.0'
+  s.add_development_dependency 'dm-timestamps', '1.2.0'
+  s.add_development_dependency 'copyright-header', '~>1.0'
 end
