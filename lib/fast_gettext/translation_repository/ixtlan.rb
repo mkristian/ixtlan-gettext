@@ -24,7 +24,7 @@ module FastGettext
   module TranslationRepository
     class Ixtlan
 
-      def initialize(name,options={})
+      def initialize( name, options={} )
         @name = name
       end
 
@@ -41,9 +41,10 @@ module FastGettext
       end
 
       def [](key)
-        ::Ixtlan::Gettext::Translation.first(::Ixtlan::Gettext::Translation.translation_key.name => key, 
-                                             ::Ixtlan::Gettext::Translation.locale.code => FastGettext.locale, 
-                                             :domain => @domain)
+        r = ::Ixtlan::Gettext::Translation.first( ::Ixtlan::Gettext::Translation.translation_key.name => key, 
+                                                  ::Ixtlan::Gettext::Translation.locale.code => FastGettext.locale, 
+                                                  :domain => domain )
+        r.text.to_s if r
       end
 
       def plural(*args)
@@ -57,9 +58,7 @@ module FastGettext
       private
       
       def domain
-        @domain ||= ::Ixtlan::UserManagement::Domain.first( :name => @name )
-        raise "domain not found: #{@name}" unless @domain
-        @domain
+        @domain ||= ::Ixtlan::UserManagement::Domain.first_or_create( :name => @name ) if @name != ::Ixtlan::Gettext::Manager::DEFAULT
       end
     end
   end

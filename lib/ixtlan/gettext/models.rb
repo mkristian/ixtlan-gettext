@@ -64,15 +64,27 @@ module Ixtlan
 
       belongs_to :translation_key, TranslationKey.to_s, :key => true
       belongs_to :locale, Locale.to_s,:key => true
-      belongs_to :domain, Ixtlan::UserManagement::Domain.to_s,:key => true
+      belongs_to :domain, Ixtlan::UserManagement::Domain.to_s, :required => false, :key => true
       
-      property :text, Text, :required => true, :length => 4096
+      property :text, Text, :length => 4096
 
       property :updated_at, DateTime, :required => true, :lazy => true
 
       # do not record timestamps since they are set from outside
       def set_timestamps_on_save
       end
+    end
+    class Flush
+      # used local flush service
+
+      def self.trigger(rest)
+        begin
+          rest.retrieve( self.class )
+        rescue => e
+          warn "error sending flush trigger for gettext #{e.message}"
+        end
+      end
+
     end
   end
 end

@@ -25,17 +25,26 @@ module Ixtlan
       DEFAULT = 'default'
 
       def initialize
-        FastGettext.default_text_domain = DEFAULT
         @default_repo = build( DEFAULT )
+        FastGettext.default_text_domain = DEFAULT
+        FastGettext.add_text_domain DEFAULT, :type => :ixtlan
       end
 
       def use( locale, name = DEFAULT )
         unless FastGettext.translation_repositories.key?( name )
-          repos = [ build( "#{name}-overlay" ), @default_repo ]
+          repos = [ build( "#{name}" ), @default_repo ]
           FastGettext.add_text_domain name, :type=>:chain, :chain=> repos
         end
         FastGettext.set_locale(locale)
         FastGettext.text_domain = name
+      end
+
+      def flush_caches(text_domain = nil)
+        if text_domain
+          (FastGettext.caches[text_domain] || {}).clear
+        else
+          FastGettext.caches.clear
+        end
       end
 
       private
