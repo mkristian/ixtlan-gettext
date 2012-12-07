@@ -16,17 +16,19 @@ namespace :ixtlan do
       data = {:translation_keys => Ixtlan::Gettext::Crawler.crawl }
       puts "sending #{data[:translation_keys].size} keys to gettext server . . ."
       keys = Rails.application.config.rest.update(Ixtlan::Gettext::TranslationKey, data)
-      puts "updating local database with #{keys.size} stored keys . . ."
+      puts "updating local database with #{keys.size} keys . . ."
       Ixtlan::Gettext::TranslationKey.update_all(keys)
     end
 
     task :commit => :environment do
-      keys = Rails.application.config.restserver.update(:translation_keys, :commit)
+      keys = Rails.application.config.rest.update(Ixtlan::Gettext::TranslationKey, :commit, nil)
+      puts "updating local database with #{keys.size} keys . . ."
       Ixtlan::Gettext::TranslationKey.update_all(keys)
     end
 
     task :rollback => :environment do
-      keys = Rails.application.config.restserver.update(:translation_keys, :rollback)
+      keys = Rails.application.config.rest.update(Ixtlan::Gettext::TranslationKey, :rollback, nil)
+      puts "updating local database with #{keys.size} keys . . ."
       Ixtlan::Gettext::TranslationKey.update_all(keys)
     end
   end
