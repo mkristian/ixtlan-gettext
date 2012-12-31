@@ -61,6 +61,7 @@ describe Ixtlan::Gettext::Manager do
   end
 
   it 'lookup' do
+p test.errors
 p wort_test.errors
     subject.use( en.code )
     _('word').must_equal "word_en_default"
