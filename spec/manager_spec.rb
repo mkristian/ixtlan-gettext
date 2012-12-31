@@ -14,49 +14,48 @@ describe Ixtlan::Gettext::Manager do
 
   subject { Ixtlan::Gettext::Manager.new }
 
-  let( :date ) { DateTime.now( 0 ) }
+  let( :en ) { @en }
+  let( :de ) { @de }
 
-  let( :en ) { Ixtlan::Gettext::Locale.first_or_create( :code => 'en',
-                                                        :updated_at => date ) }
-  let( :de ) { Ixtlan::Gettext::Locale.first_or_create( :code => 'de',
-                                                        :updated_at => date ) }
+  let( :test ) { @test }
 
-  let( :test ) { Ixtlan::UserManagement::Domain.first( :name => 'test' ) || Ixtlan::UserManagement::Domain.first_or_create( :name => 'test',
-                                                                 :updated_at => date ) }
+  let( :key ) {  @key }
 
-  let( :key ) {  Ixtlan::Gettext::TranslationKey.first_or_create( :name => 'word',
-                                                                  :updated_at => date ) }
-
-  let( :word ) { Ixtlan::Gettext::Translation.first_or_create( :text => 'word_en_default',
-                                                               :updated_at => date,
-                                                               :translation_key => key,
-                                                               :locale => en ) }
-  let( :wort ) { Ixtlan::Gettext::Translation.first_or_create( :text => 'wort_de_default',
-                                                               :updated_at => date,
-                                                               :translation_key => key,
-                                                               :locale => de ) }
-  let( :word_test ) { Ixtlan::Gettext::Translation.first_or_create( :text => 'word_en_test',
-                                                                    :updated_at => date,
-                                                                    :translation_key => key,
-                                                                    :domain => test,
-                                                                    :locale => en ) }
-  let( :wort_test ) { Ixtlan::Gettext::Translation.first_or_create( :text => 'wort_de_test',
-                                                                    :updated_at => date,
-                                                                    :translation_key => key,
-                                                                    :domain => test,
-                                                                    :locale => de ) }
+  let( :word ) { @word }
+  let( :wort ) { @wort }
+  let( :word_test ) { @word_test }
+  let( :wort_test ) { @wort_test }
 
   before do
     # setup DB :)
-    en
-    de
-    test
-
-    word
-    word_test
-    wort
-    wort_test
-
+    date = DateTime.now( 0 )
+    @en = Ixtlan::Gettext::Locale.first_or_create( :code => 'en',
+                                                   :updated_at => date )
+    @de = Ixtlan::Gettext::Locale.first_or_create( :code => 'de',
+                                                        :updated_at => date )
+    @test = Ixtlan::UserManagement::Domain.first_or_create( :name => 'test',
+                                                            :updated_at => date )
+    @key = Ixtlan::Gettext::TranslationKey.first_or_create( :name => 'word',
+                                                            :updated_at => date )
+    @word = Ixtlan::Gettext::Translation.first_or_create( :text => 'word_en_default',
+                                                          :updated_at => date,
+                                                          :translation_key => key,
+                                                          :locale => @en )
+    @word_test = Ixtlan::Gettext::Translation.first_or_create( :text => 'word_en_test',
+                                                               :updated_at => date,
+                                                               :translation_key => key,
+                                                               :domain => @test,
+                                                               :locale => @en )
+    @wort = Ixtlan::Gettext::Translation.first_or_create( :text => 'wort_de_default',
+                                                          :updated_at => date,
+                                                          :translation_key => key,
+                                                          :locale => @de )
+    @wort_test = Ixtlan::Gettext::Translation.first_or_create( :text => 'wort_de_test',
+                                                               :updated_at => date,
+                                                               :translation_key => key,
+                                                               :domain => @test,
+                                                               :locale => @de )
+    
     FastGettext.default_locale = en.code
   end
 
