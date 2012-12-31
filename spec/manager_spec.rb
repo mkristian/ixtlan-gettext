@@ -70,7 +70,8 @@ describe Ixtlan::Gettext::Manager do
     subject.use( de.code, test.name )
     _('word').must_equal "wort_de_test"
 
-    wort_test.destroy!
+p wort_test
+p    wort_test.destroy!
     # reload all to see changes
     p Ixtlan::Gettext::Translation.all( :fields => [:text, :domain_id, :locale_id] )
     subject.flush_caches
