@@ -21,7 +21,7 @@ describe Ixtlan::Gettext::Manager do
   let( :de ) { Ixtlan::Gettext::Locale.first_or_create( :code => 'de',
                                                         :updated_at => date ) }
 
-  let( :test ) { Ixtlan::UserManagement::Domain.first_or_create( :name => 'test',
+  let( :test ) { Ixtlan::UserManagement::Domain.first( :name => 'test' ) || Ixtlan::UserManagement::Domain.first_or_create( :name => 'test',
                                                                  :updated_at => date ) }
 
   let( :key ) {  Ixtlan::Gettext::TranslationKey.first_or_create( :name => 'word',
