@@ -72,6 +72,7 @@ describe Ixtlan::Gettext::Manager do
 
 p wort_test
 p    wort_test.destroy!
+p wort_test.errors
     # reload all to see changes
     p Ixtlan::Gettext::Translation.all( :fields => [:text, :domain_id, :locale_id] )
     subject.flush_caches
