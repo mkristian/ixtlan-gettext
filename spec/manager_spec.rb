@@ -71,6 +71,7 @@ describe Ixtlan::Gettext::Manager do
     _('word').must_equal "wort_de_test"
 
     wort_test.destroy!
+p Ixtlan::Gettext::TranslationKey.all
     subject.flush_caches
 
     subject.use( en.code )
