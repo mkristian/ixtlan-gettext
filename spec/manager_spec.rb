@@ -71,7 +71,7 @@ describe Ixtlan::Gettext::Manager do
     _('word').must_equal "wort_de_test"
 
 p wort_test
-p    wort_test.destroy!
+p    wort_test.reload.destroy!
 p wort_test.errors
     # reload all to see changes
     p Ixtlan::Gettext::Translation.all( :fields => [:text, :domain_id, :locale_id] )
