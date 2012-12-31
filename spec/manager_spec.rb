@@ -60,8 +60,6 @@ describe Ixtlan::Gettext::Manager do
   end
 
   it 'lookup' do
-p test.errors
-p wort_test.errors
     subject.use( en.code )
     _('word').must_equal "word_en_default"
     subject.use( en.code, test.name )
@@ -71,11 +69,7 @@ p wort_test.errors
     subject.use( de.code, test.name )
     _('word').must_equal "wort_de_test"
 
-p wort_test
-p    wort_test.reload.destroy!
-p wort_test.errors
-    # reload all to see changes
-    p Ixtlan::Gettext::Translation.all( :fields => [:text, :domain_id, :locale_id] )
+    wort_test.reload.destroy!
     subject.flush_caches
 
     subject.use( en.code )
@@ -88,8 +82,6 @@ p wort_test.errors
     _('word').must_equal "wort_de_default"
 
     wort.destroy!
-    # reload all to see changes
-    Ixtlan::Gettext::Translation.all
     subject.flush_caches
 
     subject.use( en.code )
@@ -102,8 +94,6 @@ p wort_test.errors
     _('word').must_equal "word"
 
     word.destroy!
-    # reload all to see changes
-    Ixtlan::Gettext::Translation.all
     subject.flush_caches
 
     subject.use( en.code )
@@ -117,6 +107,7 @@ p wort_test.errors
 
     word_test.destroy!
     subject.flush_caches
+
     subject.use( en.code )
     _('word').must_equal 'word'
     subject.use( en.code, test.name )
