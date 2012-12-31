@@ -5,8 +5,6 @@ require 'dm-sqlite-adapter'
 require 'ixtlan/gettext/models'
 require 'ixtlan/gettext/manager'
 
-DataMapper.setup(:default, "sqlite::memory:")
-DataMapper.auto_migrate!
 
 describe Ixtlan::Gettext::Manager do
 
@@ -27,6 +25,8 @@ describe Ixtlan::Gettext::Manager do
   let( :wort_test ) { @wort_test }
 
   before do
+    DataMapper.setup(:default, "sqlite::memory:")
+    DataMapper.auto_migrate!
     # setup DB :)
     date = DateTime.now( 0 )
     @en = Ixtlan::Gettext::Locale.first_or_create( :code => 'en',
