@@ -71,7 +71,8 @@ describe Ixtlan::Gettext::Manager do
     _('word').must_equal "wort_de_test"
 
     wort_test.destroy!
-p Ixtlan::Gettext::Translation.all
+    # reload all to see changes
+    Ixtlan::Gettext::Translation.all
     subject.flush_caches
 
     subject.use( en.code )
@@ -84,6 +85,8 @@ p Ixtlan::Gettext::Translation.all
     _('word').must_equal "wort_de_default"
 
     wort.destroy!
+    # reload all to see changes
+    Ixtlan::Gettext::Translation.all
     subject.flush_caches
 
     subject.use( en.code )
@@ -96,6 +99,8 @@ p Ixtlan::Gettext::Translation.all
     _('word').must_equal "word"
 
     word.destroy!
+    # reload all to see changes
+    Ixtlan::Gettext::Translation.all
     subject.flush_caches
 
     subject.use( en.code )
