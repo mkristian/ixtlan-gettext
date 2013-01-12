@@ -27,7 +27,7 @@ module Ixtlan
 
       def crawl
         keys.clear
-        Dir[File.join('app', 'views', '**', '*rb')].each do |f|
+        Dir[File.join('app', '**', '*rb')].each do |f|
           File.read(f).each_line do |line|
             extract_key(line) if line =~ /_[ (]/
           end
