@@ -11,6 +11,7 @@ namespace :ixtlan do
       puts Ixtlan::Gettext::Crawler.crawl.join( "\n\t" )
     end
 
+    desc 'crawls the local filesystem for _(...) method calls and sends them'
     task :update => :environment do
       puts 'crawling files . . .'
       data = {:translation_keys => Ixtlan::Gettext::Crawler.crawl }
@@ -20,12 +21,14 @@ namespace :ixtlan do
       Ixtlan::Gettext::TranslationKey.update_all(keys)
     end
 
+    desc 'commit the last update, i.e. the keys from last update are the only keys now'
     task :commit => :environment do
       keys = Rails.application.config.rest.update(Ixtlan::Gettext::TranslationKey, :commit, nil)
       puts "updating local database with #{keys.size} keys . . ."
       Ixtlan::Gettext::TranslationKey.update_all(keys)
     end
 
+    desc 'rollback the last update, i.e. undo all the changes done by last update'
     task :rollback => :environment do
       keys = Rails.application.config.rest.update(Ixtlan::Gettext::TranslationKey, :rollback, nil)
       puts "updating local database with #{keys.size} keys . . ."
