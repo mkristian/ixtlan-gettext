@@ -62,9 +62,9 @@ module Ixtlan
         'gettext_texts'
       end
 
-      belongs_to :translation_key, TranslationKey.to_s, :key => true
-      belongs_to :locale, Locale.to_s,:key => true
-      belongs_to :domain, Ixtlan::UserManagement::Domain.to_s, :required => false, :key => true
+      belongs_to :translation_key, TranslationKey, :key => true
+      belongs_to :locale, Locale,:key => true
+      belongs_to :domain, Ixtlan::UserManagement::Domain, :key => true
       
       property :text, Text, :length => 4096
 

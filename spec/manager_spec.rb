@@ -33,6 +33,9 @@ describe Ixtlan::Gettext::Manager do
                                                    :updated_at => date )
     @de = Ixtlan::Gettext::Locale.first_or_create( :code => 'de',
                                                         :updated_at => date )
+    # get the predefined in place
+    Ixtlan::UserManagement::Domain.ALL
+    @default = Ixtlan::UserManagement::Domain.DEFAULT
     @test = Ixtlan::UserManagement::Domain.first_or_create( :name => 'test',
                                                             :updated_at => date )
     @key = Ixtlan::Gettext::TranslationKey.first_or_create( :name => 'word',
@@ -40,7 +43,8 @@ describe Ixtlan::Gettext::Manager do
     @word = Ixtlan::Gettext::Translation.first_or_create( :text => 'word_en_default',
                                                           :updated_at => date,
                                                           :translation_key => key,
-                                                          :locale => @en )
+                                                          :locale => @en,
+                                                          :domain =>  @default )
     @word_test = Ixtlan::Gettext::Translation.first_or_create( :text => 'word_en_test',
                                                                :updated_at => date,
                                                                :translation_key => key,
@@ -49,7 +53,8 @@ describe Ixtlan::Gettext::Manager do
     @wort = Ixtlan::Gettext::Translation.first_or_create( :text => 'wort_de_default',
                                                           :updated_at => date,
                                                           :translation_key => key,
-                                                          :locale => @de )
+                                                          :locale => @de,
+                                                          :domain =>  @default )
     @wort_test = Ixtlan::Gettext::Translation.first_or_create( :text => 'wort_de_test',
                                                                :updated_at => date,
                                                                :translation_key => key,

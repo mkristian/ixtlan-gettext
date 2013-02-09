@@ -22,7 +22,7 @@ module Ixtlan
   module Gettext
     class Manager
       
-      DEFAULT = 'default'
+      DEFAULT = 'DEFAULT' # should match ::Ixtlan::UserManagement::Domain.DEFAULT.name
 
       def initialize
         @default_repo = build( DEFAULT )

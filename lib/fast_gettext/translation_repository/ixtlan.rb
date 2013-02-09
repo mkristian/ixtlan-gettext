@@ -58,7 +58,7 @@ module FastGettext
       private
       
       def domain
-        @domain ||= ::Ixtlan::UserManagement::Domain.first_or_create( :name => @name ) if @name != ::Ixtlan::Gettext::Manager::DEFAULT
+        @domain ||= ::Ixtlan::UserManagement::Domain.first_or_create( :name => @name )
       end
     end
   end
